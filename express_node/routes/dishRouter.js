@@ -25,5 +25,20 @@ dishRouter.route('/')
     .delete((req, res) => {
         res.end('Deleting all the dishes !');
     });
+dishRouter.route('/:dishId')
+    .get((req, res) => {
+        res.end('Will send details of thr dish: ' + req.params.dishId);
+    })
+    .post((req, res) => {
+        res.statusCode = 403;
+        res.end('PUT operation not supported on /dishes');
+    })
+    .put((req, res) => {
+        res.write('Updating the dishes: ' + req.params.dishId + '\n');
+        res.end('Will update the dish ' + req.body.name + ' with details: ' + req.body.description);
+    })
+    .delete((req, res) => {
+        res.end('Deleting dishe: ' + req.params.dishId);
+    });
 
 module.exports = dishRouter;
