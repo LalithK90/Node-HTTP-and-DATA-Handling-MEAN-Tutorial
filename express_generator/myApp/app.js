@@ -6,6 +6,10 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+//routers make by me 
+const dishRouter = require('./routes/dishRouter');
+const promotionsRouter = require('./routes/promoRouter');
+const leadersRouter = require('./routes/leaderRouter');
 
 var app = express();
 
@@ -21,6 +25,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+//call to route page -> if there isa any request include- {'/dishes'}
+app.use('/dishes', dishRouter);
+app.use('/promotions',promotionsRouter);
+app.use('/leaders',leadersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
