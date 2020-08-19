@@ -10,6 +10,19 @@ var usersRouter = require('./routes/users');
 const dishRouter = require('./routes/dishRouter');
 const promotionsRouter = require('./routes/promoRouter');
 const leadersRouter = require('./routes/leaderRouter');
+//to established monogo db
+const mongoose= require('mongoose');
+//dishes model import (database - script)
+const Dishes = require('./models/dishes');
+
+const url = 'mongodb://localhost:27017/sample';
+const connect = mongoose.connect(url);
+
+connect.then((db)=>{
+console.log('Connnected correctly');
+},(error)=>{
+  console.log(error);
+});
 
 var app = express();
 
