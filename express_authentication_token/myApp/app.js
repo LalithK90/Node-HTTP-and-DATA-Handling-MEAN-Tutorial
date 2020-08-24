@@ -18,12 +18,16 @@ const Dishes = require('./models/dishes');
 var passport = require('passport');
 var authenticate = require('./authentication/authentication');
 
+//jwt
+var config = require('./config/config');
 
 //session is configured
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 
-const url = 'mongodb://localhost:27017/sample';
+//after jwt
+const url = config.mongoUrl;
+//const url = 'mongodb://localhost:27017/sample';
 const connect = mongoose.connect(url);
 
 connect.then((db)=>{
