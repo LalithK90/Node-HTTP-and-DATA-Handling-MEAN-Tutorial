@@ -37,6 +37,16 @@ console.log('Connnected correctly');
 });
 
 var app = express();
+//to https enable
+// Secure traffic only
+app.all('*', (req, res, next) => {
+  if (req.secure) {
+    return next();
+  }
+  else {
+    res.redirect(307, 'https://' + req.hostname + ':' + app.get('secPort') + req.url);
+  }
+});
 
 app.use(passport.initialize());
 // view engine setup
@@ -47,8 +57,6 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
