@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 const dishRouter = require('./routes/dishRouter');
 const promotionsRouter = require('./routes/promoRouter');
 const leadersRouter = require('./routes/leaderRouter');
+const uploadRouter = require('./routes/uploadRouter');
 //to established monogo db
 const mongoose= require('mongoose');
 //dishes model import (database - script)
@@ -47,7 +48,8 @@ app.all('*', (req, res, next) => {
     res.redirect(307, 'https://' + req.hostname + ':' + app.get('secPort') + req.url);
   }
 });
-
+//upload router 
+app.use('/imageUpload',uploadRouter);
 app.use(passport.initialize());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
